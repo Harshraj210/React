@@ -8,18 +8,19 @@ function customrender(Reactelement,container){
   const domElement=document.createElement(Reactelement.type)
   domElement.innerHTML=Reactelement.Children
   for (const prop in Reactelement.props) {
-    if(prop === 'children')continue
+    if(prop === 'Children')continue
     // not return bcz it will close entire thing
     domElement.setAttribute(prop,Reactelement.props[prop])
 
     }
+    container.appendChild(domElement)
   }
   
 
 const Reactelement={
 type:'a',
   props:{
-    href:"https://goggle.com",
+    href:"https://google.com",
     target:'_blank'
   },
   Children:"CLick me to visit Google :)"
