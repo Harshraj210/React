@@ -21,7 +21,7 @@ function Myapp(){
 
 const AnotherElement=(
   <a href ="https://google.com" target="_blank">Visit Google</a>
-  // it takes only evaluated expression not which has to be eveluated
+  // it takes only evaluated expression not which has to be eveluated --> if cond.
 )
 
 createRoot(document.getElementById("root")).render(
