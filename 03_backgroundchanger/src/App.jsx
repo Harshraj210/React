@@ -17,8 +17,6 @@ function App() {
         <div className="flex justify-center w-full shadow-lg px-3 py-2 rounded-3xl bg-white">
           <button
             onClick={changeColor}
-              
-            
             className="px-6 py-2 rounded-full font-semibold text-white bg-blue-500 shadow-md hover:bg-blue-600 active:scale-95 transition duration-200"
           >
             Change Background
