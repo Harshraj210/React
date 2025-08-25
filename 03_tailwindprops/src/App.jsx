@@ -7,8 +7,8 @@ import Card from "./components/card"   //  path must match your file name exactl
 function App() {
   return (
     <div className="p-10">
-      <h1 className="text-2xl font-bold">Hello React + Tailwind</h1>
-      <Card />   {/* 👈 your component */}
+      <h1 className="text-2xl font-bold bg-green-600 p-5">Hello React + Tailwind</h1>
+      <Card />   {/*  your component */}
     </div>
   );
 }
