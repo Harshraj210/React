@@ -1,6 +1,11 @@
-import { useCallback, useState } from "react";
-// reactLogo and viteLogo imports are not used, you can remove them.
+import { useCallback, useState, useEffect , useRef } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import "./App.css";
+
+// useEffect --> runs code immediately when dependcies change 
+// useRef --> getting the direct access to input ele.
+// toast --> for notifications
 
 function App() {
   const [length, setlength] = useState(8);
@@ -8,18 +13,40 @@ function App() {
   const [charAllowed, setcharAllowed] = useState(false);
   const [password, setpassword] = useState("");
 
+  const passref = useRef(null)
+
   //  password generation
 
-  const generatePassword = useCallback(() => {
-    let pass = "";
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    // appending char and numbers
-    if (charAllowed) str += "!@#$%^&*()_+-=[]{}|;:',.<>?";
-    if (numberAllowed) str += "0123456789";
-    for (let i = 0; i < length; i++) {
-      pass += str.charAt(Math.floor(Math.random() * str.length));
+  const generatePassword = useCallback(
+    () => {
+      let pass = "";
+      let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+      // appending char and numbers
+      if (charAllowed) str += "!@#$%^&*()_+-=[]{}|;:',.<>?";
+      if (numberAllowed) str += "0123456789";
+      for (let i = 1; i < length; i++) {
+        // * str.length --> based char length
+        const char = Math.floor(Math.random() * str.length);
+        // appending
+        pass += str.charAt(char);
+      }
+      setpassword(pass);
+    },
+    // dependencies array --> based on this pass changes
+    [length, numberAllowed, charAllowed]
+  );
+// cpying the pass
+  const CopypasswordToClipboard = useCallback(() => {
+    if (password) {
+      window.navigator.clipboard.writeText(password);
+      passref.current?.select()
+      toast.success("Copied to clipboard!");
     }
-  });
+  },[password]);
+
+  useEffect(() => {
+    generatePassword();
+  }, [length, numberAllowed, charAllowed]);
 
   return (
     <>
@@ -35,8 +62,12 @@ function App() {
             className="outline-none w-full py-2 px-4 bg-gray-700 text-white"
             placeholder="Generated Password"
             readOnly
+            ref={passref}
           />
-          <button className="outline-none bg-blue-600 text-white px-4 py-1 shrink-0 hover:bg-blue-700 active:scale-95 transition-transform duration-150">
+          <button
+            onClick={CopypasswordToClipboard}
+            className="outline-none bg-blue-600 text-white px-4 py-1 shrink-0 hover:bg-blue-700 active:scale-95 transition-transform duration-150"
+          >
             Copy
           </button>
         </div>{" "}
@@ -81,6 +112,18 @@ function App() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }
