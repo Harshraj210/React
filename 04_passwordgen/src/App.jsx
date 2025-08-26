@@ -1,19 +1,20 @@
-import { useCallback, useState, useEffect , useRef } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import { useCallback, useState, useEffect, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-// useEffect --> runs code immediately when dependcies change 
+// useEffect --> runs code immediately when dependcies change
 // useRef --> getting the direct access to input ele.
 // toast --> for notifications
 
 function App() {
+  // default pass lenght
   const [length, setlength] = useState(8);
   const [numberAllowed, setnumberAllowed] = useState(false);
   const [charAllowed, setcharAllowed] = useState(false);
   const [password, setpassword] = useState("");
-
-  const passref = useRef(null)
+  // ref to pass in input box
+  const passref = useRef(null);
 
   //  password generation
 
@@ -35,14 +36,16 @@ function App() {
     // dependencies array --> based on this pass changes
     [length, numberAllowed, charAllowed]
   );
-// cpying the pass
+  // cpying the pass
   const CopypasswordToClipboard = useCallback(() => {
     if (password) {
+      // if--> pass exists
+      // copying to clip board
       window.navigator.clipboard.writeText(password);
-      passref.current?.select()
+      passref.current?.select();
       toast.success("Copied to clipboard!");
     }
-  },[password]);
+  }, [password]);
 
   useEffect(() => {
     generatePassword();
@@ -50,7 +53,7 @@ function App() {
 
   return (
     <>
-      <div className="w-full max-w-lg mx-auto shadow-xl rounded-lg p-6 my-10 bg-gray-800 text-orange-500">
+      <div className="w-full max-w-lg mx-auto shadow-xl rounded-lg p-6 my-10  bg-gray-900  text-emerald-400">
         <h1 className="text-white text-center text-2xl mb-4">
           Password Generator
         </h1>
