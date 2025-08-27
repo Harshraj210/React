@@ -4,7 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const[amount,setamount]=useState(0)
+  const [form,setform] = useState("usd")
+  const [to,setto] = useState("inr")
+  const [convertedamount,setconvertedamount] = useState(0)
 
   return (
     <>
