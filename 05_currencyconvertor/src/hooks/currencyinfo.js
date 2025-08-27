@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-function currencyinfo (currency){
+function useCurrencyInfo (currency){
   const [data,setdata]=useState({})
     useEffect(() => {
       // fect data API
-       fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`)
+       fetch(`https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`)
        .then((res)=>res.json())
        .then((res)=>setdata(res[currency]))
       
@@ -15,4 +15,4 @@ function currencyinfo (currency){
   return data
 }
 
-export default currencyinfo
+export default useCurrencyInfo

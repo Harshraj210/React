@@ -1,2 +1,2 @@
-import input from "./input";
-export { input };
+import InputBox  from "./input";
+export { InputBox };
