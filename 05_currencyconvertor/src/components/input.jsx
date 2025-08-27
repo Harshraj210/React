@@ -13,11 +13,11 @@ function input() {
     <div className={`bg-white p-3rounded-lg text-sm flex ${className}`}>
       Input box
       <div className="w-1-2">
-        <label htmlFor="currency" className="text-black/40 mb-2 inline-block">
+        <label htmlFor={ID} className="text-black/40 mb-2 inline-block">
           {label}
         </label>
         <input
-          id="currency"
+          id={ID}
           text="number"
           className="outline-none w-full bg-transparent py-1.5 text-lg"
           placeholder="Amount"
