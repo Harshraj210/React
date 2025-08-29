@@ -67,6 +67,18 @@ export default function Header() {
                  Contact
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/github"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
+                      isActive ? "text-blue-500" : "text-red-300"
+                    } lg:hover:bg-transparent lg:border-0 text-blue-500 hover:text-blue-700 lg:p-0`
+                  }
+                >
+                  GitHub
+                </NavLink>
+              </li>
                   <li>
                 <NavLink
                   to="/user"

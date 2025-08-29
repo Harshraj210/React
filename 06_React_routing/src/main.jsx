@@ -7,6 +7,7 @@ import Layout from './Layout.jsx'
 import Home from './components/home/Home.jsx'
 import About from './components/about/About.jsx'
 import ContactPageBMW from './components/contact/Contact.jsx'
+import Github,{Githubinfo} from './components/github/Github.jsx'
 
 import User from './components/user/User.jsx'
 
@@ -17,8 +18,14 @@ const router = createBrowserRouter(
       <Route path = "" element={<Home />} />
       <Route path="about" element= {<About />} />
       <Route path="contact" element= {<ContactPageBMW />} />
+      <Route
+      loader={Githubinfo}
+       path="github"
+        element= {<Github />} />
       {/* // for dynamic capturing */}
-      <Route path="user/:userid" element= {<User />} />
+      <Route path="user/" element= {<User />} >
+        <Route path = ":userid" element= {<User />} />
+      </Route>
 
     </Route>
     
