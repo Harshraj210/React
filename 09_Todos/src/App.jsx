@@ -46,7 +46,14 @@ function App() {
     <TodoProvider
       value={{ updateTodo, deleteTodo, toggleComplete, addTodo, todos }}
     >
-      <h1></h1>
+      <TodoForm />
+      {
+        todos.map((todo)=>(
+          <div key={todo.id}>
+            <TodoItem todo={todo}/>
+          </div>
+        ))
+      }
     </TodoProvider>
   );
 }
