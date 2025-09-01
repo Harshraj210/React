@@ -5,7 +5,17 @@ import "./App.css";
 import { TodoProvider } from "./contexts";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState(0);
+  const addTodo = (todo) => {
+    setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev]);
+  };
+
+  const updateTodo = (id, todo) => {
+    setTodos((prev) =>
+      // looping to update todo if both id is same -->todo otherwise prevtodo
+      prev.map((prevTodo) => (prevTodo.id === todo.id ? todo : prevTodo))
+    );
+  };
 
   return (
     <TodoProvider
